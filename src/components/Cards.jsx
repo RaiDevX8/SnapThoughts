@@ -1,21 +1,17 @@
+// Cards.jsx
 import React from 'react';
 
-const Card = () => {
+const Card = ({ title, category, textContent, time }) => {
   return (
-    <div className="max-w-sm w-full mt-3 rounded-lg  shadow-md  overflow-hidden border-2 border-red-600 ">
-      <header className="text-gray-100 p-4">
-        <h2 className=" text-lg font-bold">Note Title</h2>
-      </header>
-      <div className="p-4">
-        <p className="text-gray-700">
-          This is the body of the note. It can contain any text or content related to the note.
-        </p>
+    <div className="bg-white  w-[90%] max-w-md mx-auto rounded-2xl shadow-lg p-6  mb-6 transform transition duration-500 hover:scale-105 hover:shadow-2xl">
+      <div className="flex p-1 justify-between items-center mb-4">
+        <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
+        <span className="text-sm font-semibold text-gray-700 bg-gray-200 rounded-full px-3 py-1">{category}</span>
       </div>
-      <footer className="p-4 text-gray-100 text-right flex justify-between items-center">
-      <p className='text-gray-700 '>date</p>
-         <span>personal</span>
-        <button className="text-blue-500 hover:text-blue-700">Edit</button>
-      </footer>
+      <p className="text-gray-800 mb-6">{textContent}</p>
+      <div className="flex justify-end">
+        <p className="text-sm text-gray-500">{time}</p>
+      </div>
     </div>
   );
 };
