@@ -1,25 +1,25 @@
 import React, { useState } from 'react';
-import FormInput from './FormInput'; // Import FormInput component
+import FormInput from './FormInput'; 
 
 const Footer = ({ showContainer, toggleContainer, addCard }) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [category, setCategory] = useState(null); // New state for category
+  const [category, setCategory] = useState(null); 
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
-    setCategory(category); // Set category state
+    setCategory(category); 
   };
 
   const handleSubmit = (data) => {
     const currentTime = new Date();
     const formattedTime = `${currentTime.toLocaleDateString()} ${currentTime.toLocaleTimeString()}`;
-    addCard({ ...data, time: formattedTime, category }); // Pass category to addCard
-    setSelectedCategory(null); // Reset selectedCategory
-    setCategory(null); // Reset category
+    addCard({ ...data, time: formattedTime, category }); 
+    setSelectedCategory(null); 
+    setCategory(null); 
   };
 
   const handleClose = () => {
-    setSelectedCategory(null); // Reset selectedCategory when X button is clicked
+    setSelectedCategory(null); 
   };
 
   return (
@@ -63,14 +63,14 @@ const Footer = ({ showContainer, toggleContainer, addCard }) => {
           <div className="bg-white p-4 rounded-lg shadow-lg relative">
             <button
               className="absolute top-2 right-2 text-gray-500"
-              onClick={handleClose} // Assign handleClose function to X button
+              onClick={handleClose} 
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
             <h2 className="text-xl mb-4">Add a note for {selectedCategory}</h2>
-            <FormInput onSubmit={handleSubmit} />
+            <FormInput category={category} onSubmit={handleSubmit} />
           </div>
         </div>
       )}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FormInput = ({ onSubmit, onClose }) => {
+const FormInput = ({ onSubmit, onClose,category }) => {
   const [formData, setFormData] = React.useState({
     title: '',
     textContent: ''
@@ -14,7 +14,7 @@ const FormInput = ({ onSubmit, onClose }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(formData);
-    setFormData({ title: '', textContent: '' }); // Reset form data
+    setFormData({ title: '', textContent: '' }); 
   };
 
   return (
@@ -32,6 +32,7 @@ const FormInput = ({ onSubmit, onClose }) => {
           className="text-2xl font-bold text-gray-900 flex-grow outline-none mb-2"
         />
       </div>
+      <p className='text-black justify-end flex items-end ml-56 pr-7 font-bold rounded-full bg-gray-300'>{category}</p>
       <textarea
         name="textContent"
         value={formData.textContent}

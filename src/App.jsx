@@ -1,8 +1,7 @@
-// App.js
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import './App.css'; // Import your custom CSS file
+import './App.css'; 
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Card from './components/Cards';
@@ -19,23 +18,24 @@ const App = () => {
   const toggleContainer = () => {
     setShowContainer(!showContainer);
   };
-  console.log(cards)
   return (
-    <div className="h-screen w-full flex flex-col">
+    <div className=" ">
       <Header
         faSearch={faSearch}
         FontAwesomeIcon={FontAwesomeIcon}
       />
 
+<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
         {cards.map((card_data) => {
           return <Card
             key={nanoid()}
             title={card_data.title}
-            category={card_data.category}  // Make sure category is passed
+            category={card_data.category}  
             textContent={card_data.textContent}
             time={card_data.time}
           />;
         })}
+      </div>
 
       <Footer
         showContainer={showContainer}
