@@ -49,7 +49,7 @@ html , body{
   @media screen and (max-width: 668px) {
    .header
     {
-      margin-top: 2em;
+      margin-top: 1em;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
