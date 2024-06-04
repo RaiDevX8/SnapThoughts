@@ -23,23 +23,23 @@ const Footer = ({ showContainer, toggleContainer, addCard }) => {
   };
 
   return (
-    <div className="fixed bottom-10 text-white inset-x-0 flex justify-center">
+    <div className="fixed  z-0 bottom-10 text-white inset-x-0 flex justify-center">
       <button
-        className="text-6xl pb-3 bg-yellow-300 h-[80px] w-[80px] rounded-full flex items-center justify-center shadow-lg hover:container-pop-up"
+        className="text-6xl pb-3 bg-yellow-300 h-[40px] lg:h-[80px]  w-[80px] rounded-full flex items-center justify-center shadow-lg hover:container-pop-up"
         onClick={toggleContainer}
       >
         {showContainer ? "-" : "+"}
       </button>
       {showContainer && (
-        <div className="container mb-4 flex justify-between rounded-full w-[80%] sm:w-[50%] items-center gap-4 sm:gap-10">
+        <div className="container  mb-4 flex justify-between rounded-full w-[80%] sm:w-[50%] items-center gap-4 sm:gap-10">
           <div
-            className="text-black cursor-pointer w-1/4 sm:w-full text-center rounded-full hover:bg-yellow-200"
+            className="text-black   cursor-pointer w-1/4 sm:w-full text-center rounded-full hover:bg-yellow-200"
             onClick={() => handleCategoryClick('Family')}
           >
             Family
           </div>
           <div
-            className="text-black cursor-pointer w-1/4 sm:w-full text-center rounded-full hover:bg-red-200"
+            className="text-black  cursor-pointer w-1/4 sm:w-full text-center rounded-full hover:bg-red-200"
             onClick={() => handleCategoryClick('Study')}
           >
             Study
