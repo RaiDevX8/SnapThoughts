@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const FormInput = ({ onSubmit, onClose,category }) => {
   const [formData, setFormData] = React.useState({
     title: '',
@@ -14,13 +15,13 @@ const FormInput = ({ onSubmit, onClose,category }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(formData);
-    setFormData({ title: '', textContent: '' }); 
+    setFormData({ title: '', textContent: '' });
   };
 
   return (
     <form onSubmit={handleSubmit} className= " bg-white w-full max-w-md  rounded-2xl shadow-lg p-2 mb-2 transform transition duration-500 hover:scale-105 hover:shadow-2xl relative">
       <button type="button" className="absolute top-2 right-2 text-gray-500" onClick={onClose}>
-        
+
       </button>
       <div className="flex flex-col mb-4">
         <input
@@ -39,6 +40,7 @@ const FormInput = ({ onSubmit, onClose,category }) => {
         onChange={handleChange}
         placeholder="Enter your note here"
         className="text-gray-800 mb-6 w-full h-24 resize-none outline-none"
+        required title='You can not save empty note'
       />
       <div className="flex justify-end">
         <button type="submit" className="text-sm text-gray-500 mr-2">Submit</button>
