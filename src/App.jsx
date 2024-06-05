@@ -18,7 +18,7 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState(1)
 
   const [cardsPerPage, setCardsPerPage] = useState(() => {
-    const initialCardsPerPage = window.innerWidth < 768 ? 3 : 4
+    const initialCardsPerPage = window.innerWidth < 768 ? 2 : 4
     return initialCardsPerPage
   })
 
@@ -26,7 +26,7 @@ const App = () => {
   useEffect(() => {
     const handleResize = () => {
       const newCardsPerPage =
-        window.innerWidth < 768 ? 3 : window.innerWidth < 992 ? 4 : 8
+        window.innerWidth < 768 ? 2 : window.innerWidth < 992 ? 4 : 8
       setCardsPerPage(newCardsPerPage)
     }
 

@@ -5,6 +5,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+     overscroll-behavior: none;
 }
 html , body{
     height: 100%;
@@ -33,11 +34,11 @@ html , body{
     display: flex;
     align-items: center;
   }
-  
+
   .search-icon {
     margin-right: 10px; /* Adjust as needed */
   }
-  
+
   .search-input {
     background-color: #ddd;
     border: none;
@@ -45,7 +46,7 @@ html , body{
     padding: 5px 10px;
     font-size: 14px;
   }
-  
+
   @media screen and (max-width: 668px) {
    .header
     {
@@ -72,12 +73,12 @@ html , body{
       display: flex;
       gap:10px;
     }
-  
+
     .search-icon {
       margin-right: 0;
       margin-bottom: 5px; /* Adjust as needed */
     }
-  
+
     .search-input {
       width: 90%; /* Ensure input takes full width */
     }
@@ -85,75 +86,75 @@ html , body{
   .bg-white {
     background-color: #fff;
   }
-  
+
   .rounded-lg {
     border-radius: 0.5rem;
   }
-  
+
   .shadow-md {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   }
-  
+
   .p-4 {
     padding: 1rem;
   }
-  
+
   .mb-4 {
     margin-bottom: 1rem;
   }
-  
+
   .flex {
     display: flex;
   }
-  
+
   .justify-between {
     justify-content: space-between;
   }
-  
+
   .items-center {
     align-items: center;
   }
-  
+
   .mb-2 {
     margin-bottom: 0.5rem;
   }
-  
+
   .text-lg {
     font-size: 1.125rem;
   }
-  
+
   .font-semibold {
     font-weight: 600;
   }
-  
+
   .text-sm {
     font-size: 0.875rem;
   }
-  
+
   .text-gray-600 {
     color: #718096;
   }
-  
+
   .text-gray-800 {
     color: #2d3748;
   }
-  
+
   .text-xs {
     font-size: 0.75rem;
   }
-  
+
   .text-gray-500 {
     color: #4a5568;
   }
-  
+
   .mt-2 {
     margin-top: 0.5rem;
   }
-  
+
     .shadow-lg {
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
     }
-  
+
   .header
   {
   color: #FDE047;
