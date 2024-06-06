@@ -1,34 +1,34 @@
-import React, { useState } from 'react';
-import FormInput from './FormInput';
+import React, { useState } from 'react'
+import FormInput from './FormInput'
 
 const Footer = ({ showContainer, toggleContainer, addCard }) => {
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const [category, setCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null)
+  const [category, setCategory] = useState(null)
 
-  const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
-    setCategory(category);
-  };
+  const handleCategoryClick = category => {
+    setSelectedCategory(category)
+    setCategory(category)
+  }
 
-  const handleSubmit = (data) => {
-    const currentTime = new Date();
-    const formattedTime = `${currentTime.toLocaleDateString()} ${currentTime.toLocaleTimeString()}`;
-    addCard({ ...data, time: formattedTime, category });
-    setSelectedCategory(null);
-    setCategory(null);
-  };
+  const handleSubmit = data => {
+    const currentTime = new Date()
+    const formattedTime = `${currentTime.toLocaleDateString()} ${currentTime.toLocaleTimeString()}`
+    addCard({ ...data, time: formattedTime, category })
+    setSelectedCategory(null)
+    setCategory(null)
+  }
 
   const handleClose = () => {
-    setSelectedCategory(null);
-  };
+    setSelectedCategory(null)
+  }
 
   return (
     <div className="fixed  z-0 bottom-10 text-white inset-x-0 flex justify-center">
       <button
-        className="text-6xl pb-3 bg-yellow-300 h-[40px] lg:h-[80px]  w-[80px] rounded-full flex items-center justify-center shadow-lg hover:container-pop-up"
+        className=" h-[50px] w-[50px] bg-yellow-300 rounded-full   pb-1 text-center font-bold text-black text-[2rem]"
         onClick={toggleContainer}
       >
-        {showContainer ? "-" : "+"}
+        {showContainer ? '-' : '+'}
       </button>
       {showContainer && (
         <div className="container  mb-4 flex justify-between rounded-full w-[80%] sm:w-[50%] items-center gap-4 sm:gap-10">
@@ -65,8 +65,19 @@ const Footer = ({ showContainer, toggleContainer, addCard }) => {
               className="absolute top-2 right-2 text-gray-500"
               onClick={handleClose}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
             <h2 className="text-xl mb-4">Add a note for {selectedCategory}</h2>
@@ -75,7 +86,7 @@ const Footer = ({ showContainer, toggleContainer, addCard }) => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

@@ -1,6 +1,5 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { nanoid } from 'nanoid'
 import React, { useEffect, useState } from 'react'
 import './App.css'
 import Pagination from './Pagination'
@@ -52,10 +51,13 @@ const App = () => {
   useEffect(() => {
     localStorage.setItem('cards', JSON.stringify(cards))
   }, [cards])
-  console.log(localStorage.getItem('cards'))
 
   const addCard = newCard => {
     setCards([...cards, newCard])
+  }
+  const deleteCard = id => {
+    const updatedCard = cards.filter(cards => cards.id !== id)
+    setCards(updatedCard)
   }
 
   const toggleContainer = () => {
@@ -75,13 +77,15 @@ const App = () => {
         <div className="grid mt-16 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
           {currentNotes.map(card_data => (
             <Card
-              key={nanoid()}
+              key={card_data.id}
+              id={card_data.id}
               title={card_data.title}
               category={card_data.category}
               textContent={card_data.textContent}
               time={card_data.time}
               goToNextPage={goToNextPage}
               goToPrevPage={goToPrevPage}
+              deleteCard={deleteCard}
             />
           ))}
         </div>
