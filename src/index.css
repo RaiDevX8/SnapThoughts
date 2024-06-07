@@ -11,6 +11,11 @@ html , body{
     height: 100%;
     width: 100%;
     background-color: #181b23;
+    background-image: url(./images/NONotes.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50%;
+    background-blend-mode:overlay;
 }
 .container
 {
@@ -48,14 +53,18 @@ html , body{
   }
 
   @media screen and (max-width: 668px) {
-   .header
+    body
     {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: start;
-        gap: 10px;
-        }
+      background-size: 70%;
+    }
+    .header
+    {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 3rem;
+      }
         .header span{
           font-size: 30px;
         }

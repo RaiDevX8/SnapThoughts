@@ -6,7 +6,7 @@ import Pagination from './Pagination'
 import Card from './components/Cards'
 import Footer from './components/Footer'
 import Header from './components/Header'
-import NoNotesImage from './images/NONotes.png'
+import toast, { Toaster } from 'react-hot-toast'
 
 const App = () => {
   const [showContainer, setShowContainer] = useState(false)
@@ -58,6 +58,8 @@ const App = () => {
   const deleteCard = id => {
     const updatedCard = cards.filter(cards => cards.id !== id)
     setCards(updatedCard)
+    toast.success('deleted Successfully!')
+
   }
 
   const toggleContainer = () => {
@@ -67,29 +69,22 @@ const App = () => {
   return (
     <div className="h-screen w-full ">
       <Header faSearch={faSearch} FontAwesomeIcon={FontAwesomeIcon} />
-      {cards.length === 0 ? (
-        <img
-          className="image shadow-lg bg-transparent   w-full h-[30em] grayscale rounded-full object-contain flex justify-center items-center  "
-          src={NoNotesImage}
-          alt="img"
-        />
-      ) : (
-        <div className="grid mt-16 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
-          {currentNotes.map(card_data => (
-            <Card
-              key={card_data.id}
-              id={card_data.id}
-              title={card_data.title}
-              category={card_data.category}
-              textContent={card_data.textContent}
-              time={card_data.time}
-              goToNextPage={goToNextPage}
-              goToPrevPage={goToPrevPage}
-              deleteCard={deleteCard}
-            />
-          ))}
-        </div>
-      )}
+      <Toaster/>
+      <div className="grid mt-16 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+        {currentNotes.map(card_data => (
+          <Card
+            key={card_data.id}
+            id={card_data.id}
+            title={card_data.title}
+            category={card_data.category}
+            textContent={card_data.textContent}
+            time={card_data.time}
+            goToNextPage={goToNextPage}
+            goToPrevPage={goToPrevPage}
+            deleteCard={deleteCard}
+          />
+        ))}
+      </div>
       {cards.length !== 0 && (
         <Pagination
           currentPage={currentPage}
@@ -98,7 +93,6 @@ const App = () => {
           goToNextPage={goToNextPage}
         />
       )}
-
       <Footer
         showContainer={showContainer}
         toggleContainer={toggleContainer}
