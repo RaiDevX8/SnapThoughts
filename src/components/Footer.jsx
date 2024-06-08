@@ -23,7 +23,7 @@ const Footer = ({ showContainer, toggleContainer, addCard }) => {
   }
 
   return (
-    <div className="fixed mb-10 z-0 bottom-10 text-white inset-x-0 flex justify-center">
+    <div className=" content-center   fixed mb-10  bottom-10 text-white inset-x-0 flex justify-center">
       <button
         className=" h-[50px]  w-[50px] bg-yellow-300 rounded-full   pb-1 text-center font-bold text-black text-[2rem]"
         onClick={toggleContainer}

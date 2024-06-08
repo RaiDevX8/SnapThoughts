@@ -70,7 +70,7 @@ const App = () => {
     <div className="h-screen w-full ">
       <Header faSearch={faSearch} FontAwesomeIcon={FontAwesomeIcon} />
       <Toaster/>
-      <div className="grid mt-16 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+      <div className="card grid mt-16 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
         {currentNotes.map(card_data => (
           <Card
             key={card_data.id}
