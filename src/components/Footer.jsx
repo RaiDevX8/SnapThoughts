@@ -4,7 +4,6 @@ import FormInput from './FormInput'
 const Footer = ({ showContainer, toggleContainer, addCard }) => {
   const [selectedCategory, setSelectedCategory] = useState(null)
   const [category, setCategory] = useState(null)
-
   const handleCategoryClick = category => {
     setSelectedCategory(category)
     setCategory(category)
@@ -16,6 +15,7 @@ const Footer = ({ showContainer, toggleContainer, addCard }) => {
     addCard({ ...data, time: formattedTime, category })
     setSelectedCategory(null)
     setCategory(null)
+    toggleContainer()
   }
 
   const handleClose = () => {
@@ -30,7 +30,7 @@ const Footer = ({ showContainer, toggleContainer, addCard }) => {
       >
         {showContainer ? '-' : '+'}
       </button>
-      {showContainer && (
+      {showContainer  && (
         <div className="container  mb-4 flex justify-between rounded-full w-[80%] sm:w-[50%] items-center gap-4 sm:gap-10">
           <div
             className="text-black   cursor-pointer w-1/4 sm:w-full text-center rounded-full hover:bg-yellow-200"
