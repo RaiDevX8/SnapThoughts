@@ -1,9 +1,15 @@
-import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { useContext } from 'react'
+import { MyContext } from '../App'
 
 const Header = () => {
+  const { searchQuery, setSearchQuery } = useContext(MyContext)
+
+  const handleSearchChange = e => {
+    setSearchQuery(e.target.value)
+  }
+
   return (
     <header className="header font-bold h-[5em] p-5 flex flex-col justify-end gap-4 text-4xl">
       <div className="logo-container ">
@@ -19,6 +25,7 @@ const Header = () => {
             type="text"
             placeholder="Search notes..."
             className="search-input bg-transparent text-black "
+            onChange={handleSearchChange}
           />
         </div>
       </div>

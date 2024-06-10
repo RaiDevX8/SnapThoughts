@@ -1,12 +1,14 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext, createContext } from 'react'
 import './App.css'
 import Pagination from './Pagination'
 import Card from './components/Cards'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import toast, { Toaster } from 'react-hot-toast'
+
+export const MyContext = createContext()
 
 const App = () => {
   const [showContainer, setShowContainer] = useState(false)
@@ -15,13 +17,13 @@ const App = () => {
     return storedCards ? JSON.parse(storedCards) : []
   })
   const [currentPage, setCurrentPage] = useState(1)
+  const [searchQuery, setSearchQuery] = useState('')
 
   const [cardsPerPage, setCardsPerPage] = useState(() => {
     const initialCardsPerPage = window.innerWidth < 768 ? 2 : 4
     return initialCardsPerPage
   })
 
-  // Update cardsPerPage on window resize for responsiveness
   useEffect(() => {
     const handleResize = () => {
       const newCardsPerPage =
@@ -34,11 +36,17 @@ const App = () => {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  const totalPages = Math.ceil(cards.length / cardsPerPage)
+  const filteredCards = cards.filter(
+    card =>
+      card.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      card.textContent.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      card.category.toLowerCase().includes(searchQuery.toLowerCase())
+  )
+const totalPages = Math.ceil(filteredCards.length / cardsPerPage)
 
-  const indexOfLastNote = currentPage * cardsPerPage
-  const indexOfFirstNote = indexOfLastNote - cardsPerPage
-  const currentNotes = cards.slice(indexOfFirstNote, indexOfLastNote)
+const indexOfLastNote = currentPage * cardsPerPage
+const indexOfFirstNote = indexOfLastNote - cardsPerPage
+const currentNotes = filteredCards.slice(indexOfFirstNote, indexOfLastNote)
 
   const goToNextPage = () => {
     setCurrentPage(prev => Math.min(prev + 1, totalPages))
@@ -51,54 +59,66 @@ const App = () => {
   useEffect(() => {
     localStorage.setItem('cards', JSON.stringify(cards))
   }, [cards])
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [searchQuery])
 
   const addCard = newCard => {
     setCards([...cards, newCard])
   }
-  const deleteCard = id => {
-    const updatedCard = cards.filter(cards => cards.id !== id)
-    setCards(updatedCard)
-    toast.success('deleted Successfully!')
+ const deleteCard = id => {
+   const updatedCards = cards.filter(card => card.id !== id)
+   setCards(updatedCards)
+   toast.success('Deleted Successfully!')
 
-  }
+   // Check if current page becomes empty after deletion
+   if (currentNotes.length === 0 && currentPage > 1) {
+     setCurrentPage(prevPage => prevPage - 1) // Move to previous page
+   }
+ }
+
 
   const toggleContainer = () => {
     setShowContainer(!showContainer)
   }
 
   return (
-    <div className="h-screen w-full ">
-      <Header faSearch={faSearch} FontAwesomeIcon={FontAwesomeIcon} />
-      <Toaster/>
-      <div className="card grid mt-16 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
-        {currentNotes.map(card_data => (
-          <Card
-            key={card_data.id}
-            id={card_data.id}
-            title={card_data.title}
-            category={card_data.category}
-            textContent={card_data.textContent}
-            time={card_data.time}
-            goToNextPage={goToNextPage}
+    <MyContext.Provider
+      value={{ cards, setCards, searchQuery, setSearchQuery }}
+    >
+      <div className="h-screen w-full ">
+        <Header />
+        <Toaster />
+        <div className="card grid mt-16 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
+          {currentNotes.map(card_data => (
+            <Card
+              key={card_data.id}
+              id={card_data.id}
+              title={card_data.title}
+              category={card_data.category}
+              textContent={card_data.textContent}
+              time={card_data.time}
+              goToNextPage={goToNextPage}
+              goToPrevPage={goToPrevPage}
+              deleteCard={deleteCard}
+            />
+          ))}
+        </div>
+        {filteredCards.length !== 0 && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
             goToPrevPage={goToPrevPage}
-            deleteCard={deleteCard}
+            goToNextPage={goToNextPage}
           />
-        ))}
-      </div>
-      {cards.length !== 0 && (
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          goToPrevPage={goToPrevPage}
-          goToNextPage={goToNextPage}
+        )}
+        <Footer
+          showContainer={showContainer}
+          toggleContainer={toggleContainer}
+          addCard={addCard}
         />
-      )}
-      <Footer
-        showContainer={showContainer}
-        toggleContainer={toggleContainer}
-        addCard={addCard}
-      />
-    </div>
+      </div>
+    </MyContext.Provider>
   )
 }
 
