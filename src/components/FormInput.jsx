@@ -14,7 +14,7 @@ const FormInput = ({ onSubmit, onClose, category }) => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    const noteWithId = { ...formData, id: nanoid() } // Add a unique ID to the note
+    const noteWithId = { ...formData, id: nanoid() } 
     onSubmit(noteWithId)
     setFormData({ title: '', textContent: '' })
   }

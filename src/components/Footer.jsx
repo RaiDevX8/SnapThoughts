@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import FormInput from './FormInput'
-
+import dayjs from 'dayjs'
 const Footer = ({ showContainer, toggleContainer, addCard }) => {
   const [selectedCategory, setSelectedCategory] = useState(null)
   const [category, setCategory] = useState(null)
@@ -12,7 +12,9 @@ const Footer = ({ showContainer, toggleContainer, addCard }) => {
   const handleSubmit = data => {
     const currentTime = new Date()
     const formattedTime = `${currentTime.toLocaleDateString()} ${currentTime.toLocaleTimeString()}`
-    addCard({ ...data, time: formattedTime, category })
+    const date=dayjs(formattedTime).format('MMM DD, YYYY')
+    console.log(date)
+    addCard({ ...data, time: date, category })
     setSelectedCategory(null)
     setCategory(null)
     toggleContainer()

@@ -7,13 +7,14 @@ const Pagination = ({
   goToNextPage,
 }) => {
   if (totalPages <= 1) {
-    return goToPrevPage() || null
+    return null
   }
+
   return (
     <div>
-      <div className="pagination   mb-10 gap-5 text-center text-white flex justify-center items-center">
+      <div className="pagination mb-10 gap-5 text-center text-white flex justify-center items-center">
         <button
-          className="bg-gray-400 rounded-full w-24 "
+          className="bg-gray-400 rounded-full w-24"
           onClick={goToPrevPage}
           disabled={currentPage === 1}
         >

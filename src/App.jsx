@@ -71,9 +71,8 @@ const currentNotes = filteredCards.slice(indexOfFirstNote, indexOfLastNote)
    setCards(updatedCards)
    toast.success('Deleted Successfully!')
 
-   // Check if current page becomes empty after deletion
-   if (currentNotes.length === 0 && currentPage > 1) {
-     setCurrentPage(prevPage => prevPage - 1) // Move to previous page
+   if (currentNotes.length === 1 && currentPage > 1) {
+     setCurrentPage(prevPage => Math.max(prevPage - 1, 1)) 
    }
  }
 

@@ -6,17 +6,15 @@
 *{
     margin: 0;
     padding: 0;
+    overscroll-behavior: none;
     box-sizing: border-box;
-        touch-action: pan-y; /* Allow vertical panning */
-     overscroll-behavior: none;
+        touch-action: pan-y;
 }
-/* For Firefox */
 * {
     scrollbar-width: thin;
     scrollbar-color: #4caf50 #f3f3f3;
 }
 
-/* For Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
     width: 12px;
 }
@@ -69,7 +67,7 @@ html , body{
   }
 
   .search-icon {
-    margin-right: 10px; /* Adjust as needed */
+    margin-right: 10px;
   }
 
   .search-input {
@@ -85,7 +83,7 @@ html , body{
     {
       background-size: 70%;
     }
-    /* Mobile Styles */
+
   }
   .bg-white {
     background-color: #fff;
